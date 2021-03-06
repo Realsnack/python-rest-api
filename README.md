@@ -3,7 +3,7 @@
 ## Requirements:
 ### Rest API Endpoints
 * /
-  * Simple Hello world! ❌
+  * Simple Hello world! ✅
 * /api/redis
   * GET /:key -  Returns required key ❌
   * POST /set - Inserts key into redis ❌
