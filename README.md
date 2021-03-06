@@ -27,8 +27,8 @@
 * Elasticsearch ❌
 * Kafka ❌
 * Prometheus ❌
-* Docker ❌
-* Jenkins ❌
+* Docker ✅
+* Jenkins ✅
 
 ### Optional implementations
 * Generate swagger (json/yaml)
