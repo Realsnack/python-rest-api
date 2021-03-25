@@ -1,10 +1,5 @@
 from fastapi import APIRouter
 import psycopg2
-import sys, os
-import numpy as np
-import pandas as pd
-import example_psql as creds
-import pandas.io.sql as psql
 
 router = APIRouter(
     prefix="/api/employees",
