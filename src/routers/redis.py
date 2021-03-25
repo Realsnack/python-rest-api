@@ -13,9 +13,18 @@ r = redis.Redis(
 )
 
 
+def get_redis_status():
+    try:
+        pingResult = r.ping()
+    except:
+        pingResult = False
+    return pingResult
+
+
 @router.get("/")
 async def read_redis_root():
-    return {"message": "Welcome to Redis API"}
+    redis_status = get_redis_status()
+    return {"message": "Welcome to Redis API", 'isRedisUp': redis_status}
 
 
 @router.get('/{key}')
