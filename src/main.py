@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from fastapi.params import Depends
-from routers import redis
+from routers import redis, employees
 
 app = FastAPI()
 
 app.include_router(redis.router)
+app.include_router(employees.router)
 
 @app.get("/")
 async def read_root():
@@ -13,3 +14,4 @@ async def read_root():
 @app.get("/{name}")
 async def read_root_with_name(name: str):
     return {"message": f"Hello {name}"}
+    
