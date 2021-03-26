@@ -5,7 +5,7 @@
 * /
   * Simple Hello world! ✅
 * /api/redis
-  * GET /:key -  Returns required key ❌
+  * GET /:key -  Returns required key ✅
   * POST /set - Inserts key into redis ❌
   * GET /count - Returns count of all keys ❌
   * GET /count/pattern - Returns count of specified pattern ❌
@@ -22,9 +22,9 @@
 * Monitoring middleware - Prometheus statistics ❌
 
 ### Technologies:
-* Redis ❌
-* PostgreSQL ❌
-* Elasticsearch ❌
+* Redis ✅
+* PostgreSQL ✅
+* Elasticsearch ✅
 * Kafka ❌
 * Prometheus ❌
 * Docker ✅

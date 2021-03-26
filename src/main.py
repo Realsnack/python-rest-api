@@ -1,8 +1,10 @@
 from fastapi import FastAPI, Request
 from fastapi.params import Depends
-from routers import redis, employees
 from starlette.middleware.base import BaseHTTPMiddleware
+
 from middlewares import processTimeHeader, requestLogging
+from routers import employees, redis
+from services import elasticService
 
 app = FastAPI()
 
