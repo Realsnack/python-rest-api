@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import FastAPI, Request
 from fastapi.params import Depends
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -15,7 +17,7 @@ app.include_router(employees.router)
 
 @app.get("/")
 async def read_root():
-    return {"message": "Hello world!"}
+    return {"message": "Hello world!", 'Time': datetime.now()}
 
 @app.get("/{name}")
 async def read_root_with_name(name: str):

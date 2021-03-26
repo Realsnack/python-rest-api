@@ -1,0 +1,6 @@
+{
+    "Host": "0.0.0.0",
+    "Port": "5050",
+    "Log_level": "debug",
+    "Reload": true
+}
