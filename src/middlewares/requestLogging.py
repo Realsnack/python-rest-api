@@ -9,28 +9,20 @@ elastic = ElasticService()
 
 async def log_request(request: Request, call_next):
     headers = request.headers
-
+    body = None
+    path = str(request.url)
     method = request.method
+
     if (method == 'PUT' or method == 'POST'):
         body = await request.body()
 
     response = await call_next(request)
     statusCode = response.status_code
 
-    if (method == 'PUT' or method == 'POST'):
-        document = {
-            'headers': str(headers),
-            'method': method,
-            'body': str(body),
-            'status_code': statusCode
-        }
-    else:
-        document = {
-            'headers': str(headers),
-            'method': method,
-            'status_code': statusCode
-        }
+    if (body == None):
+        elastic.indexRequest(method, path, statusCode, headers)
+        return response
 
-    elastic.indexDocument(document)
+    elastic.indexRequest(method, path, statusCode, headers, str(body))
 
     return response
