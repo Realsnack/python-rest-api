@@ -16,3 +16,11 @@ def get_redis_status():
 def get(key: str):
     value = r.get(key)
     return value
+
+def set(key: str, value: str):
+    try:
+        r.set(key, value)
+        return True
+    except:
+        print()
+        return False

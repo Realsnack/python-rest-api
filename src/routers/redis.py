@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
+import redis
 from services import redisService
 
 router = APIRouter(
@@ -6,6 +8,12 @@ router = APIRouter(
     tags=["redis"],
     responses={404: {"description": "Not found"}},
 )
+
+
+class RedisKey(BaseModel):
+    Key: str
+    Value: str
+
 
 @router.get("/")
 async def read_redis_root():
@@ -16,4 +24,12 @@ async def read_redis_root():
 @router.get('/{key}')
 async def read_redis_key(key: str):
     value = redisService.get(key)
-    return {'Key': key, 'Value': value}
+    return {'key': key, 'value': value}
+
+
+@router.post('/set')
+async def create_redis_key(redis_key: RedisKey):
+    if (redisService.set(redis_key.Key, redis_key.Value)):
+        return redis_key
+
+    return {"message": f"Key {redis_key.Key} wasn't created because of an error"}

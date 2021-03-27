@@ -10,7 +10,7 @@ from routers import employees, redis
 app = FastAPI()
 
 app.add_middleware(BaseHTTPMiddleware, dispatch=processTimeHeader.add_process_time_header)
-app.add_middleware(BaseHTTPMiddleware, dispatch=requestLogging.log_request)
+#app.add_middleware(BaseHTTPMiddleware, dispatch=requestLogging.log_request)
 app.include_router(redis.router)
 app.include_router(employees.router)
 
