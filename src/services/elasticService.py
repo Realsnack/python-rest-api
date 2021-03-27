@@ -1,3 +1,4 @@
+from typing import Dict
 from elasticsearch import Elasticsearch
 from datetime import datetime
 from services import configurationService
@@ -6,21 +7,21 @@ import json
 
 class ElasticService:
     def __init__(self):
-        self.elasticHost = configurationService.config['Elasticsearch']['Hosts']
-        self.es = Elasticsearch(self.elasticHost)
+        self._elastic_host = configurationService.config['Elasticsearch']['Hosts']
+        self.es = Elasticsearch(self._elastic_host)
 
-    def indexDocument(self, document):
+    def index_document(self, document):
         # document.update('timestamp': datetime.now())
         self.es.index(index='python-api-logs', body=document)
 
-    def indexRequest(self, method: str, url: str, status_code: int, headers: {}, body: str = None):
-        document = self.__createDocument__(body, method, url, status_code)
+    def index_request(self, method: str, url: str, status_code: int, headers: Dict[str, str], body: str = None):
+        document = self.__create_document__(body, method, url, status_code)
 
         self.__add_headers__(document, headers)
         document.update({'timestamp': datetime.now()})
         self.es.index(index='python-api-logs', body=document)
 
-    def __createDocument__(self, body, method, url, status_code):
+    def __create_document__(self, body, method, url, status_code):
         if (body == None):
             document = {
                 'method': method,

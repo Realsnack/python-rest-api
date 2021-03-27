@@ -1,7 +1,7 @@
 import configparser
 import json
 
-def loadConfig(configName):
+def load_config(configName):
     config = configparser.ConfigParser()
 
     with open(configName, 'r') as f:
@@ -10,4 +10,4 @@ def loadConfig(configName):
     return config
 
 
-config = loadConfig('config.json')
+config = load_config('config.json')

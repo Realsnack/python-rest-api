@@ -3,7 +3,7 @@ import configparser
 import json
 
 
-def loadConfig(configName):
+def load_config(configName):
     config = configparser.ConfigParser()
 
     with open(configName, 'r') as f:
@@ -13,6 +13,6 @@ def loadConfig(configName):
 
 
 if (__name__ == '__main__'):
-    config = loadConfig('start.json')
+    config = load_config('start.json')
     uvicorn.run("main:app", host=config["Host"], port=int(config["Port"]),
                 log_level=config["Log_level"], reload=config["Reload"])

@@ -6,7 +6,6 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from middlewares import processTimeHeader, requestLogging
 from routers import employees, redis
-from services import elasticService
 
 app = FastAPI()
 

@@ -20,9 +20,9 @@ async def log_request(request: Request, call_next):
     statusCode = response.status_code
 
     if (body == None):
-        elastic.indexRequest(method, path, statusCode, headers)
+        elastic.index_request(method, path, statusCode, headers)
         return response
 
-    elastic.indexRequest(method, path, statusCode, headers, str(body))
+    elastic.index_request(method, path, statusCode, headers, str(body))
 
     return response
