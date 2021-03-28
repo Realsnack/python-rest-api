@@ -13,8 +13,8 @@ async def log_request(request: Request, call_next):
     path = str(request.url)
     method = request.method
 
-    if (method == 'PUT' or method == 'POST'):
-        body = await request.body()
+    # if (method == 'PUT' or method == 'POST'):
+    #     body = await request.json()
 
     response = await call_next(request)
     statusCode = response.status_code
