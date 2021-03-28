@@ -13,9 +13,11 @@ def get_redis_status():
         pingResult = False
     return pingResult
 
+
 def get(key: str):
     value = r.get(key)
     return value
+
 
 def set(key: str, value: str):
     try:
@@ -24,3 +26,22 @@ def set(key: str, value: str):
     except:
         print()
         return False
+
+
+def get_count(pattern: str = None):
+    # Add wildcards to the pattern
+    if (pattern == None):
+        pattern = '*'
+    else:
+        pattern = f'*{pattern}*'
+
+    print(f'Pattern {pattern}')
+    _cursor = 0
+    keys_count = 0
+    while (True):
+        scan_result = r.scan(cursor=_cursor, match=pattern)
+        _cursor = scan_result[0]
+        keys_count += len(scan_result[1])
+
+        if(_cursor == 0):
+            return keys_count

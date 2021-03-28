@@ -6,9 +6,9 @@
   * Simple Hello world! ✅
 * /api/redis
   * GET /:key -  Returns required key ✅
-  * POST /set - Inserts key into redis ❌
-  * GET /count - Returns count of all keys ❌
-  * GET /count/pattern - Returns count of specified pattern ❌
+  * POST /set - Inserts key into redis ✅
+  * GET /count - Returns count of all keys ✅
+  * GET /count/pattern - Returns count of specified pattern ✅
 * /api/Employee
   * GET /all - Returns all employees ❌
   * GET /:id - Returns employee with given id ❌

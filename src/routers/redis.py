@@ -21,10 +21,17 @@ async def read_redis_root():
     return {"message": "Welcome to Redis API", 'isRedisUp': redis_status}
 
 
-@router.get('/{key}')
-async def read_redis_key(key: str):
-    value = redisService.get(key)
-    return {'key': key, 'value': value}
+@router.get('/count')
+async def count_redis_keys():
+    key_count = redisService.get_count()
+
+    return {'pattern': '*', 'count': key_count}
+
+@router.get('/count/{pattern}')
+async def count_redis_keys(pattern: str):
+    key_count = redisService.get_count(pattern)
+
+    return {'pattern': pattern, 'count': key_count}
 
 
 @router.post('/set')
@@ -33,3 +40,9 @@ async def create_redis_key(redis_key: RedisKey):
         return redis_key
 
     return {"message": f"Key {redis_key.Key} wasn't created because of an error"}
+
+
+@router.get('/{key}')
+async def read_redis_key(key: str):
+    value = redisService.get(key)
+    return {'key': key, 'value': value}
