@@ -11,8 +11,8 @@ router = APIRouter(
 
 
 class RedisKey(BaseModel):
-    Key: str
-    Value: str
+    key: str
+    value: str
 
 
 @router.get("/")
@@ -36,10 +36,10 @@ async def count_redis_keys(pattern: str):
 
 @router.post('/set')
 async def create_redis_key(redis_key: RedisKey):
-    if (redisService.set(redis_key.Key, redis_key.Value)):
+    if (redisService.set(redis_key.key, redis_key.value)):
         return redis_key
 
-    return {"message": f"Key {redis_key.Key} wasn't created because of an error"}
+    return {"message": f"Key {redis_key.key} wasn't created because of an error"}
 
 
 @router.get('/{key}')
