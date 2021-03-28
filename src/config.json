@@ -1,5 +1,16 @@
 {
     "Elasticsearch": {
         "Hosts": "http://elasticsearch.msvacina.cz"
+    },
+    "PostgreSQL": {
+        "Host": "postgredb.msvacina.cz",
+        "Port": 5432,
+        "Database": "python-rest",
+        "User": "python-rest_app",
+        "Password": "Pythonheslo",
+        "Tables": {
+            "Employees": "employees"
+        },
+        "Schema": "public"
     }
 }
