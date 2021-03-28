@@ -11,14 +11,14 @@ with open('config.json', 'r') as f:
     config = json.load(f)
 
 # Run tests
+try:
     tc = TestCollection(config['BaseUrl'])
     tc.testRedisEndpoint(config['RedisEndpoint'])
-    tc.testEmployeesEndpoint(config['EmployeesEndpoint'])
+    #tc.testEmployeesEndpoint(config['EmployeesEndpoint'])
     print('Test successful - No errors occured')
-# try:
-# except Exception as e:
-#     if hasattr(e, 'message'):
-#         print(e.message)
-#     else:
-#         print(e)
-#     exit(1)
+except Exception as e:
+    if hasattr(e, 'message'):
+        print(e.message)
+    else:
+        print(e)
+    exit(1)
