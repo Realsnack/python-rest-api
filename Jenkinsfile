@@ -19,7 +19,12 @@ node {
         sh 'docker run -d --name python-rest_api -p 5050:5050 192.168.1.27:49153/python-restapi:latest'
     }
 
+    stage('Wait for deployment') {
+        sleep(5)
+    }
+
     stage('Run integration tests') {
+
         sh 'cd tests && python3 -m pip install -r ./requirements.txt && python3 app.py'
     }
 }
